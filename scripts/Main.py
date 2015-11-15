@@ -3,6 +3,8 @@ import pymjin2
 import random
 
 MAIN_LEVERAGE_NAME_PREFIX = "leverage"
+MAIN_SCORE_NAME_PREFIX    = "score"
+MAIN_SCORE_MATERIAL       = "score"
 MAIN_TARGET_NAME_PREFIX   = "target"
 MAIN_TARGETS_NB           = 4
 
@@ -43,6 +45,8 @@ class MainImpl(object):
     def setScore(self, score):
         self.score = score
         print "setScore", score
+        self.u.d["SCORE"] = MAIN_SCORE_NAME_PREFIX + str(score)
+        self.u.set("node.$SCENE.$SCORE.material", MAIN_SCORE_MATERIAL)
     def step(self):
         self.popRandomTarget()
     def target(self, id):
