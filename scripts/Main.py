@@ -5,8 +5,12 @@ import random
 MAIN_LEVERAGE_NAME_PREFIX = "leverage"
 MAIN_SCORE_NAME_PREFIX    = "score"
 MAIN_SCORE_MATERIAL       = "score"
+MAIN_SCORE_MAX            = 8
 MAIN_TARGET_NAME_PREFIX   = "target"
 MAIN_TARGETS_NB           = 4
+MAIN_TIME_INITIAL         = 10
+MAIN_TIME_FACTOR          = 1
+MAIN_TIME_NAME_PREFIX     = "time"
 
 class MainImpl(object):
     def __init__(self, user):
@@ -15,9 +19,15 @@ class MainImpl(object):
         # Create.
         self.activeTarget = None
         self.score        = 0
+        self.timeLeft     = MAIN_TIME_INITIAL * MAIN_TIME_FACTOR
     def __del__(self):
         # Derefer.
         self.u = None
+    def displayResults(self):
+        label = "LOSER"
+        if (self.score >= MAIN_SCORE_MAX):
+            label = "WINNER"
+        print "Game over. You are:", label
     def onCatch(self, key, value):
         if (value[0] == "1"):
             self.activeTarget = key[2]
@@ -47,13 +57,24 @@ class MainImpl(object):
         print "setScore", score
         self.u.d["SCORE"] = MAIN_SCORE_NAME_PREFIX + str(score)
         self.u.set("node.$SCENE.$SCORE.material", MAIN_SCORE_MATERIAL)
+    def setTimer(self, time):
+        print "setTimer", time
+        self.u.d["TIME"] = MAIN_TIME_NAME_PREFIX + str(time)
+        self.u.set("node.$SCENE.$TIME.material", "")
     def step(self):
+        self.tickTimer()
+        if (self.timeLeft < 1):
+            self.displayResults()
+            return
         self.popRandomTarget()
     def target(self, id):
         return MAIN_TARGET_NAME_PREFIX + str(id)
     def targetToLeverage(self, target):
         v = target.split(MAIN_TARGET_NAME_PREFIX)
         return MAIN_LEVERAGE_NAME_PREFIX + v[1]
+    def tickTimer(self):
+        self.timeLeft = self.timeLeft - 1
+        self.setTimer(self.timeLeft / MAIN_TIME_FACTOR)
 
 class Main(object):
     def __init__(self, sceneName, nodeName, environment):
