@@ -1,0 +1,13 @@
+<compositor>
+    <include>pipeline/templates.xml</include>
+    <include>pipeline/default.textures</include>
+    <!--
+    <material name="base">
+        <texture unit="0" varname="diffuseMap">wam_tex</texture>
+        <texture unit="1" varname="normalMap">base_n</texture>
+        <uniform name="useNormalMap" type="int">
+            <value>1</value>
+        </uniform>
+    </material>
+    -->
+</compositor>
