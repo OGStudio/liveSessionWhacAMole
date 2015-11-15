@@ -1,0 +1,18 @@
+move
+    default
+        liftTarget
+            point = 0 0 0 0
+            point = 1000 0 0 0.1
+        lowerTarget
+            point = 0 0 0 0
+            point = 1000 0 0 -0.1
+delay
+    default
+        waitForLeverage
+            delay = 1000
+sequence
+    default
+        popTarget
+            action = liftTarget
+            action = waitForLeverage
+            action = lowerTarget

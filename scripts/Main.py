@@ -1,5 +1,9 @@
 
 import pymjin2
+import random
+
+MAIN_TARGET_NAME_PREFIX = "target"
+MAIN_TARGETS_NB = 4
 
 class MainImpl(object):
     def __init__(self, user):
@@ -8,6 +12,20 @@ class MainImpl(object):
     def __del__(self):
         # Derefer.
         self.u = None
+    def onPopFinish(self, key, value):
+        print "Main.onPopFinish", key, value
+        # Continue the game.
+        self.step()
+    def popRandomTarget(self):
+        random.seed(None)
+        id = random.randint(1, MAIN_TARGETS_NB)
+        print "popRandomTarget", id
+        self.u.d["TARGET"] = self.target(id)
+        self.u.set("target.$SCENE.$TARGET.moving", "1")
+    def step(self):
+        self.popRandomTarget()
+    def target(self, id):
+        return MAIN_TARGET_NAME_PREFIX + str(id)
 
 class Main(object):
     def __init__(self, sceneName, nodeName, environment):
@@ -18,7 +36,13 @@ class Main(object):
                                          "Run Whac-a-mole game")
         self.impl = MainImpl(self.u)
         # Prepare.
+        # Constant.
+        self.u.d["SCENE"] = sceneName
+        # Listen to target pop finish.
+        self.u.listen("target.$SCENE..moving", "0", self.impl.onPopFinish)
         self.env.registerUser(self.u)
+        # Start the game.
+        self.impl.step()
         print "Main.__init__"
     def __del__(self):
         # Tear down.
