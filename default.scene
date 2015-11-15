@@ -67,41 +67,49 @@ node
             parent = time
             position = -0.900000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time2
             parent = time
             position = -0.600000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time3
             parent = time
             position = -0.300000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time4
             parent = time
             position = 0.000000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time5
             parent = time
             position = 0.300000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time6
             parent = time
             position = 0.600000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time7
             parent = time
             position = 0.900000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         time8
             parent = time
             position = 1.200000 -1.290000 -0.090000
             scale = 0.100000 0.100000 0.100000
+            material = time
             model = models/box.osgt
         score
             parent = ROOT

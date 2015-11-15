@@ -22,4 +22,18 @@
             <value>1</value>
         </uniform>
     </material>
+    <material name="score">
+        <texture unit="0" varname="diffuseMap">target_tex</texture>
+        <texture unit="2" varname="glowMap">target_tex</texture>
+        <uniform name="useGlowMap" type="int">
+            <value>1</value>
+        </uniform>
+    </material>
+    <material name="time">
+        <texture unit="0" varname="diffuseMap">leverage_tex</texture>
+        <texture unit="2" varname="glowMap">leverage_tex</texture>
+        <uniform name="useGlowMap" type="int">
+            <value>1</value>
+        </uniform>
+    </material>
 </compositor>
