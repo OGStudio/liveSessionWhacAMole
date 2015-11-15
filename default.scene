@@ -7,4 +7,142 @@ node
             light = default
         base
             parent = ROOT
+            material = base
+            model = models/base.osgt
+        targets
+            parent = ROOT
+            position = 0.000000 0.000000 -0.250000
+        target1
+            parent = targets
+            position = -0.625000 -0.875000 0.000000
+            material = target
+            model = models/target.osgt
+        target2
+            parent = targets
+            position = -0.125000 -0.375000 0.000000
+            material = target
+            model = models/target.osgt
+        target3
+            parent = targets
+            position = 0.375000 -0.875000 0.000000
+            material = target
+            model = models/target.osgt
+        target4
+            parent = targets
+            position = 0.875000 -0.375000 0.000000
+            material = target
+            model = models/target.osgt
+        leverages
+            parent = ROOT
+            position = 0.000000 0.000000 -0.100000
+        leveragePair1
+            parent = leverages
+        leverage1
+            parent = leveragePair1
+            position = -0.625000 0.200000 0.000000
+            material = leverage
+            model = models/leverage.osgt
+        leverage2
+            parent = leveragePair1
+            position = -0.125000 0.740000 0.000000
+            material = leverage
+            model = models/leverage.osgt
+        leveragePair2
+            parent = leverages
+            position = 1.000000 0.000000 0.000000
+        leverage3
+            parent = leveragePair2
+            position = -0.625000 0.200000 0.000000
+            material = leverage
+            model = models/leverage.osgt
+        leverage4
+            parent = leveragePair2
+            position = -0.125000 0.740000 0.000000
+            material = leverage
+            model = models/leverage.osgt
+        time
+            parent = ROOT
+            position = -0.030000 0.000000 -0.490000
+        time1
+            parent = time
+            position = -0.900000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time2
+            parent = time
+            position = -0.600000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time3
+            parent = time
+            position = -0.300000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time4
+            parent = time
+            position = 0.000000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time5
+            parent = time
+            position = 0.300000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time6
+            parent = time
+            position = 0.600000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time7
+            parent = time
+            position = 0.900000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        time8
+            parent = time
+            position = 1.200000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score
+            parent = ROOT
+            position = -0.030000 0.000000 0.000000
+        score1
+            parent = score
+            position = -0.900000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score2
+            parent = score
+            position = -0.600000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score3
+            parent = score
+            position = -0.300000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score4
+            parent = score
+            position = 0.000000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score5
+            parent = score
+            position = 0.300000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score6
+            parent = score
+            position = 0.600000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score7
+            parent = score
+            position = 0.900000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
+            model = models/box.osgt
+        score8
+            parent = score
+            position = 1.200000 -1.290000 -0.090000
+            scale = 0.100000 0.100000 0.100000
             model = models/box.osgt
