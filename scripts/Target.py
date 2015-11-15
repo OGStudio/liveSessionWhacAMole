@@ -1,7 +1,7 @@
 
 import pymjin2
 
-class MainImpl(object):
+class TargetImpl(object):
     def __init__(self, user):
         # Refer.
         self.u = user
@@ -9,17 +9,16 @@ class MainImpl(object):
         # Derefer.
         self.u = None
 
-class Main(object):
+class Target(object):
     def __init__(self, sceneName, nodeName, environment):
         # Refer.
         self.env = environment
         # Create.
-        self.u = pymjin2.EnvironmentUser("Main" + nodeName,
-                                         "Run Whac-a-mole game")
-        self.impl = MainImpl(self.u)
+        self.u = pymjin2.EnvironmentUser("Target" + nodeName,
+                                         "Turn specific node into WAM target")
+        self.impl = TargetImpl(self.u)
         # Prepare.
         self.env.registerUser(self.u)
-        print "Main.__init__"
     def __del__(self):
         # Tear down.
         self.env.deregisterUser(self.u)
@@ -28,10 +27,9 @@ class Main(object):
         del self.u
         # Derefer.
         self.env = None
-        print "Main.__del__"
 
 def SCRIPT_CREATE(sceneName, nodeName, environment):
-    return Main(sceneName, nodeName, environment)
+    return Target(sceneName, nodeName, environment)
 
 def SCRIPT_DESTROY(instance):
     del instance

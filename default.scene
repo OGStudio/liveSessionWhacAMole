@@ -17,21 +17,25 @@ node
             position = -0.625000 -0.875000 0.000000
             material = target
             model = models/target.osgt
+            script = scripts/Target.py
         target2
             parent = targets
             position = -0.125000 -0.375000 0.000000
             material = target
             model = models/target.osgt
+            script = scripts/Target.py
         target3
             parent = targets
             position = 0.375000 -0.875000 0.000000
             material = target
             model = models/target.osgt
+            script = scripts/Target.py
         target4
             parent = targets
             position = 0.875000 -0.375000 0.000000
             material = target
             model = models/target.osgt
+            script = scripts/Target.py
         leverages
             parent = ROOT
             position = 0.000000 0.000000 -0.100000
