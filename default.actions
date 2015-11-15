@@ -6,6 +6,14 @@ move
         lowerTarget
             point = 0 0 0 0
             point = 1000 0 0 -0.1
+rotate
+    default
+        lowerLeverage
+            point = 0 0 0 0
+            point = 1000 90 0 0
+        liftLeverage
+            point = 0 0 0 0
+            point = 1000 -90 0 0
 delay
     default
         waitForLeverage
@@ -16,3 +24,6 @@ sequence
             action = liftTarget
             action = waitForLeverage
             action = lowerTarget
+        rotateLeverage
+            action = lowerLeverage
+            action = liftLeverage

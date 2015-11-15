@@ -46,11 +46,13 @@ node
             position = -0.625000 0.200000 0.000000
             material = leverage
             model = models/leverage.osgt
+            script = scripts/Leverage.py
         leverage2
             parent = leveragePair1
             position = -0.125000 0.740000 0.000000
             material = leverage
             model = models/leverage.osgt
+            script = scripts/Leverage.py
         leveragePair2
             parent = leverages
             position = 1.000000 0.000000 0.000000
@@ -59,11 +61,13 @@ node
             position = -0.625000 0.200000 0.000000
             material = leverage
             model = models/leverage.osgt
+            script = scripts/Leverage.py
         leverage4
             parent = leveragePair2
             position = -0.125000 0.740000 0.000000
             material = leverage
             model = models/leverage.osgt
+            script = scripts/Leverage.py
         time
             parent = ROOT
             position = -0.030000 0.000000 -0.490000

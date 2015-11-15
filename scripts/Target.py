@@ -8,12 +8,22 @@ class TargetImpl(object):
     def __init__(self, user):
         # Refer.
         self.u = user
+        # Create.
+        self.isMoving = False
     def __del__(self):
         # Derefer.
         self.u = None
     def onPopFinish(self, key, value):
+        self.isMoving = False
         self.u.report("target.$SCENE.$NODE.moving", "0")
+    def onSelection(self, key, value):
+        # Ignore selection if we're not moving.
+        if (not self.isMoving):
+            return
+        self.u.report("target.$SCENE.$NODE.selected", "1")
+        self.u.report("target.$SCENE.$NODE.selected", "0")
     def setMoving(self, key, value):
+        self.isMoving = True
         self.u.set("$POP.$SCENE.$NODE.active", "1")
 
 class Target(object):
@@ -34,6 +44,10 @@ class Target(object):
         self.u.provide("target.$SCENE.$NODE.moving", self.impl.setMoving)
         # Listen to pop action finish.
         self.u.listen("$POP.$SCENE.$NODE.active", "0", self.impl.onPopFinish)
+        # Listen to node selection.
+        self.u.listen("selector.$SCENE.selectedNode", nodeName, self.impl.onSelection)
+        # Provide.
+        self.u.provide("target.$SCENE.$NODE.selected")
         self.env.registerUser(self.u)
     def __del__(self):
         # Tear down.
