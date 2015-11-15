@@ -11,8 +11,10 @@ class LeverageImpl(object):
     def __del__(self):
         # Derefer.
         self.u = None
+    def onLowerFinish(self, key, value):
+        self.u.report("leverage.$SCENE.$NODE.hit", "1")
+        self.u.report("leverage.$SCENE.$NODE.hit", "0")
     def setMoving(self, key, value):
-        print "leverage.setMoving", key, value
         self.u.set("$ROTATE.$SCENE.$NODE.active", "1")
 
 class Leverage(object):
@@ -31,12 +33,10 @@ class Leverage(object):
         self.u.d["LOWER"]  = LEVERAGE_ACTION_LOWER_NAME
         # Provide "moving".
         self.u.provide("leverage.$SCENE.$NODE.moving", self.impl.setMoving)
-        # Listen to pop action finish.
-#        self.u.listen("$POP.$SCENE.$NODE.active", "0", self.impl.onPopFinish)
-#        # Listen to node selection.
-#        self.u.listen("selector.$SCENE.selectedNode", nodeName, self.impl.onSelection)
-#        # Provide.
-#        self.u.provide("target.$SCENE.$NODE.selected")
+        # Listen to lower action finish.
+        self.u.listen("$LOWER.$SCENE.$NODE.active", "0", self.impl.onLowerFinish)
+        # Provide "hit".
+        self.u.provide("leverage.$SCENE.$NODE.hit")
         self.env.registerUser(self.u)
     def __del__(self):
         # Tear down.

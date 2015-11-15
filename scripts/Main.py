@@ -10,23 +10,39 @@ class MainImpl(object):
     def __init__(self, user):
         # Refer.
         self.u = user
+        # Create.
+        self.activeTarget = None
+        self.score        = 0
     def __del__(self):
         # Derefer.
         self.u = None
+    def onCatch(self, key, value):
+        if (value[0] == "1"):
+            self.activeTarget = key[2]
+        else:
+            self.activeTarget = None
     def onPopFinish(self, key, value):
         # Continue the game.
         self.step()
+    def onHit(self, key, value):
+        # No active target.
+        if (self.activeTarget is None):
+            return
+        leverage = key[2]
+        targetLeverage = self.targetToLeverage(self.activeTarget)
+        if (leverage == targetLeverage):
+            self.setScore(self.score + 1)
     def onSelection(self, key, value):
-        print "onSelection", key, value
         self.u.d["LEVERAGE"] = self.targetToLeverage(key[2])
-        print "leverage", self.targetToLeverage(key[2])
         self.u.set("leverage.$SCENE.$LEVERAGE.moving", "1")
     def popRandomTarget(self):
         random.seed(None)
         id = random.randint(1, MAIN_TARGETS_NB)
-        print "popRandomTarget", id
         self.u.d["TARGET"] = self.target(id)
         self.u.set("target.$SCENE.$TARGET.moving", "1")
+    def setScore(self, score):
+        self.score = score
+        print "setScore", score
     def step(self):
         self.popRandomTarget()
     def target(self, id):
@@ -50,6 +66,10 @@ class Main(object):
         self.u.listen("target.$SCENE..moving", "0", self.impl.onPopFinish)
         # Listen to target selection.
         self.u.listen("target.$SCENE..selected", "1", self.impl.onSelection)
+        # Listen to leverage hit.
+        self.u.listen("leverage.$SCENE..hit", "1", self.impl.onHit)
+        # Listen to target catch.
+        self.u.listen("target.$SCENE..catch", None, self.impl.onCatch)
         self.env.registerUser(self.u)
         # Start the game.
         self.impl.step()

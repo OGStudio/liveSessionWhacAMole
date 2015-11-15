@@ -22,6 +22,8 @@ class TargetImpl(object):
             return
         self.u.report("target.$SCENE.$NODE.selected", "1")
         self.u.report("target.$SCENE.$NODE.selected", "0")
+    def onWait(self, key, value):
+        self.u.report("target.$SCENE.$NODE.catch", value[0])
     def setMoving(self, key, value):
         self.isMoving = True
         self.u.set("$POP.$SCENE.$NODE.active", "1")
@@ -48,6 +50,10 @@ class Target(object):
         self.u.listen("selector.$SCENE.selectedNode", nodeName, self.impl.onSelection)
         # Provide.
         self.u.provide("target.$SCENE.$NODE.selected")
+        # Provide "catch".
+        self.u.provide("target.$SCENE.$NODE.catch")
+        # Listen to wait action.
+        self.u.listen("$WAIT.$SCENE.$NODE.active", None, self.impl.onWait)
         self.env.registerUser(self.u)
     def __del__(self):
         # Tear down.
