@@ -9,7 +9,7 @@ MAIN_SCORE_MAX            = 8
 MAIN_TARGET_NAME_PREFIX   = "target"
 MAIN_TARGETS_NB           = 4
 MAIN_TIME_INITIAL         = 10
-MAIN_TIME_FACTOR          = 1
+MAIN_TIME_FACTOR          = 2
 MAIN_TIME_NAME_PREFIX     = "time"
 
 class MainImpl(object):
@@ -63,7 +63,8 @@ class MainImpl(object):
         self.u.set("node.$SCENE.$TIME.material", "")
     def step(self):
         self.tickTimer()
-        if (self.timeLeft < 1):
+        if ((self.timeLeft < 1) or
+            (self.score >= MAIN_SCORE_MAX)):
             self.displayResults()
             return
         self.popRandomTarget()
